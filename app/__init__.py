@@ -25,5 +25,20 @@ def create_app(config_name):
 app = create_app('default')
 
 
+def init_db():
+    db.create_all()
+    u=User(email="ameerhamza0220@gmail.com",username='AmeerHamza',password='1234')
+    db.session.add(u)
+    db.session.commit()
+    # # Create a test user
+    # new_user = User('a@a.com', 'aaaaaaaa')
+    # new_user.display_name = 'Nathan'
+    # db.session.add(new_user)
+    # db.session.commit()
+    #
+    # new_user.datetime_subscription_valid_until = datetime.datetime(2019, 1, 1)
+    # db.session.commit()
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    init_db()
