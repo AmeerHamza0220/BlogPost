@@ -15,6 +15,7 @@ def create_app(config_name):
     config[config_name].init_app(app)
     bootstrap.init_app(app)
     db.init_app(app)
+
     login_manager.init_app(app)
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
@@ -22,23 +23,9 @@ def create_app(config_name):
     app.register_blueprint(auth_blueprint)
     return app
 
-app = create_app('default')
-
-
-def init_db():
-    db.create_all()
-    u=User(email="ameerhamza0220@gmail.com",username='AmeerHamza',password='1234')
-    db.session.add(u)
-    db.session.commit()
-    # # Create a test user
-    # new_user = User('a@a.com', 'aaaaaaaa')
-    # new_user.display_name = 'Nathan'
-    # db.session.add(new_user)
-    # db.session.commit()
-    #
-    # new_user.datetime_subscription_valid_until = datetime.datetime(2019, 1, 1)
-    # db.session.commit()
 
 
 if __name__ == '__main__':
+    from app.models import init_db
+   # create_app('default')
     init_db()

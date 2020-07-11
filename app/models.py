@@ -40,3 +40,17 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
+def init_db():
+    db.create_all()
+    u=User(email="ameerhamza0220@gmail.com",username='AmeerHamza',password='1234')
+    db.session.add(u)
+    db.session.commit()
+    # # Create a test user
+    # new_user = User('a@a.com', 'aaaaaaaa')
+    # new_user.display_name = 'Nathan'
+    # db.session.add(new_user)
+    # db.session.commit()
+    #
+    # new_user.datetime_subscription_valid_until = datetime.datetime(2019, 1, 1)
+    # db.session.commit()
